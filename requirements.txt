@@ -1,0 +1,8 @@
+pinecone 
+voyageai 
+protoc_gen_openapiv2 
+numpy==1.24.4 
+langchain_chroma 
+langchain_voyageai 
+langchain_huggingface
+gdown
