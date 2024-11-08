@@ -1,2 +1,9 @@
 __pycache__
 *.csv
+*.db
+*.db-shm
+*.db-wal
+.env
+*.bin
+*.pickle
+*.sqlite3
