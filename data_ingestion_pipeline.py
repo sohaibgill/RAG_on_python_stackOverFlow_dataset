@@ -5,13 +5,12 @@ from logging_classes import CSVFileHandler
 from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
 import sqlite3
 import concurrent.futures
-import multiprocessing
-import time
+from typing import List,Dict,Any
 import json
 import re
 from tqdm import tqdm
-from data_cleaning import DataPreprocessor, DataQualityIssue
-from logging_classes import CSVFileHandler, LogsCSVFormatter
+from data_cleaning import DataPreprocessor
+from logging_classes import CSVFileHandler
 
 
 # Data Ingestion pipeline.
@@ -265,3 +264,19 @@ class DataIngestionPipeline:
     def connect_db(self) -> sqlite3.Connection:
         """Create and return a database connection."""
         return sqlite3.connect(self.db_path, detect_types=sqlite3.PARSE_DECLTYPES)
+    
+
+if __name__ == "__main__":
+    import os
+    if os.path.exists('stackoverflow.db'):
+        os.remove('stackoverflow.db')
+
+    # Initialize with log file
+    data_ingestion_pipeline = DataIngestionPipeline(
+        db_path='stackoverflow.db',
+        chunk_size=10000,
+        log_file='data_ingestion_logs.csv'
+    )
+    dataset_file_path = "python_stackover_flow_dataset.csv"
+    data_ingestion_pipeline.ingest_data(dataset_file_path)
+    data_ingestion_pipeline.get_post_statistics()
