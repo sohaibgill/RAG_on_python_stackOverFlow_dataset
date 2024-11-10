@@ -21,7 +21,7 @@ class VectorIngestion:
     self.VOYAGEAI_API_KEY = os.getenv("VoyageAI_API_KEY")
     self.hf_client_API_KEY = os.getenv("HuggingFace_API_KEY")
     self.open_source_mode = open_source_mode
-    self.hf_client = InferenceClient(api_key="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")
+    self.hf_client = InferenceClient(api_key=self.hf_client_API_KEY)
     self.index_name = "chroma_vectorDB"
 
 
