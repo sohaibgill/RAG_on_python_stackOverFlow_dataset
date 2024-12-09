@@ -197,5 +197,5 @@ if __name__ == "__main__":
 
     # response_df = inference.retriever(query,verbose)
     while True:
-        query = input("Please enter your python related query...\n")
+        query = input("Please enter your python related query....\n")
         inference_instance.llm_call(query,verbose,stream)
